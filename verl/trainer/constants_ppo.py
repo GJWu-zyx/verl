@@ -113,6 +113,8 @@ def get_ppo_ray_runtime_env(config=None):
     )
 
     runtime_env = {
+        # Standalone TransferQueue actors can import their native dependencies before verl.
+        "worker_process_setup_hook": "verl_worker_setup.configure_transfer_queue_worker",
         "env_vars": PPO_RAY_RUNTIME_ENV["env_vars"].copy(),
         **({"working_dir": None} if working_dir is None else {}),
     }

@@ -29,6 +29,10 @@ from packaging.version import parse as parse_version
 # redundant; disable it. `setdefault` keeps it overridable (set "1" to re-enable).
 os.environ.setdefault("RAY_ENABLE_UV_RUN_RUNTIME_ENV", "0")
 
+from verl_worker_setup import configure_transfer_queue_worker  # noqa: E402
+
+configure_transfer_queue_worker()
+
 from .protocol import DataProto  # noqa: E402
 from .utils.device import is_npu_available  # noqa: E402
 from .utils.import_utils import import_external_libs  # noqa: E402
